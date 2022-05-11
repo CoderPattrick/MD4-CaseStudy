@@ -3,9 +3,11 @@ package com.example.md4casestudy.service;
 import com.example.md4casestudy.model.user.AppUser;
 import com.example.md4casestudy.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepo userRepo;
