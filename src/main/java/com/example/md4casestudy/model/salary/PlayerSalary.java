@@ -11,7 +11,7 @@ public class PlayerSalary{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "coach_id")
+    @JoinColumn(name = "player_id")
     private Player player;
     private String first_day_of_the_week;
     private double weekly_salary;

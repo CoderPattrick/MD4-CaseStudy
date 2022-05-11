@@ -1,5 +1,7 @@
 package com.example.md4casestudy.model;
 
+import com.example.md4casestudy.model.user.AppUser;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,17 @@ public class Coach {
     private Nationality nationality;
     private double base_salary;
     private String cv;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private AppUser user;
+
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

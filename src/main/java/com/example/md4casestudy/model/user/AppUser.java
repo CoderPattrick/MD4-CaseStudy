@@ -1,5 +1,4 @@
 package com.example.md4casestudy.model.user;
-
 import javax.persistence.*;
 
 @Entity

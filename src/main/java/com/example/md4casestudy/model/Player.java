@@ -1,5 +1,7 @@
 package com.example.md4casestudy.model;
 
+import com.example.md4casestudy.model.user.AppUser;
+
 import javax.persistence.*;
 
 @Entity
@@ -27,6 +29,17 @@ public class Player {
     private double weight;
     private String cv;
     private String avatar;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private AppUser user;
+
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;
