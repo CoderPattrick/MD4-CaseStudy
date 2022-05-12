@@ -1,5 +1,6 @@
 package com.example.md4casestudy.model.user;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "app_user")
@@ -17,9 +18,11 @@ public class AppUser {
     @Column(nullable = false)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private AppRole role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    private Set<AppRole> roles;
 
     public Long getId() {
         return id;
@@ -53,29 +56,29 @@ public class AppUser {
         this.password = password;
     }
 
-    public AppRole getRole() {
-        return role;
+    public Set<AppRole> getRoles() {
+        return roles;
     }
 
-    public void setRole(AppRole role) {
-        this.role = role;
+    public void setRoles(Set<AppRole> roles) {
+        this.roles = roles;
     }
 
     public AppUser() {
     }
 
-    public AppUser(String user_name, String email, String password, AppRole role) {
+    public AppUser(String user_name, String email, String password, Set<AppRole> roles) {
         this.user_name = user_name;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
     }
 
-    public AppUser(Long id, String user_name, String email, String password, AppRole role) {
+    public AppUser(Long id, String user_name, String email, String password, Set<AppRole> roles) {
         this.id = id;
         this.user_name = user_name;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
     }
 }
