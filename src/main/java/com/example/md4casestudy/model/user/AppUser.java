@@ -10,7 +10,7 @@ public class AppUser {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String user_name;
+    private String username;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -32,12 +32,12 @@ public class AppUser {
         this.id = id;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUsername(String user_name) {
+        this.username = user_name;
     }
 
     public String getEmail() {
@@ -68,7 +68,7 @@ public class AppUser {
     }
 
     public AppUser(String user_name, String email, String password, Set<AppRole> roles) {
-        this.user_name = user_name;
+        this.username = user_name;
         this.email = email;
         this.password = password;
         this.roles = roles;
@@ -76,7 +76,7 @@ public class AppUser {
 
     public AppUser(Long id, String user_name, String email, String password, Set<AppRole> roles) {
         this.id = id;
-        this.user_name = user_name;
+        this.username = user_name;
         this.email = email;
         this.password = password;
         this.roles = roles;
