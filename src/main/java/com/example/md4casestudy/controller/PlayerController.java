@@ -63,11 +63,6 @@ public class PlayerController implements GeneralController<Player> {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-//    @PostMapping
-//    @Override
-//    public ResponseEntity save(@ModelAttribute Player player) {
-//        playerService.save(player);
-//        return new ResponseEntity<>(HttpStatus.CREATED);    }
 
     @PostMapping("/{id}")
     @Override

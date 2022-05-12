@@ -15,7 +15,7 @@ public class Coach {
     @ManyToOne
     @JoinColumn(name = "nationality_id")
     private Nationality nationality;
-    private double base_salary;
+    private String base_salary;
     private String cv;
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -61,11 +61,11 @@ public class Coach {
         this.nationality = nationality;
     }
 
-    public double getBase_salary() {
+    public String getBase_salary() {
         return base_salary;
     }
 
-    public void setBase_salary(double base_salary) {
+    public void setBase_salary(String base_salary) {
         this.base_salary = base_salary;
     }
 
@@ -77,9 +77,9 @@ public class Coach {
         this.cv = cv;
     }
 
-    public Coach(String name, String doB, Nationality nationality, double base_salary, String cv) {
+    public Coach(String name, String doB, Nationality nationality, String base_salary, String cv) {
         this.name = name;
-        DoB = doB;
+        this.DoB = doB;
         this.nationality = nationality;
         this.base_salary = base_salary;
         this.cv = cv;
@@ -88,7 +88,7 @@ public class Coach {
     public Coach() {
     }
 
-    public Coach(Long id, String name, String doB, Nationality nationality, double base_salary, String cv) {
+    public Coach(Long id, String name, String doB, Nationality nationality, String base_salary, String cv) {
         this.id = id;
         this.name = name;
         DoB = doB;
