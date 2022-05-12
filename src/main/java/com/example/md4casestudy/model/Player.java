@@ -143,7 +143,7 @@ public class Player {
     public Player(String name, Position position, String doB, Nationality nationality, Performance performance, PlayerStatus status, double base_salary, double height, double weight, String cv, String avatar) {
         this.name = name;
         this.position = position;
-        DoB = doB;
+        this.DoB = doB;
         this.nationality = nationality;
         this.performance = performance;
         this.status = status;
@@ -154,11 +154,34 @@ public class Player {
         this.avatar = avatar;
     }
 
+    public Player(String name, Position position, String doB, Nationality nationality, double height, double weight, String cv, String avatar) {
+        this.name = name;
+        this.position = position;
+        this.DoB = doB;
+        this.nationality = nationality;
+        this.height = height;
+        this.weight = weight;
+        this.cv = cv;
+        this.avatar = avatar;
+    }
+
+    public Player(String name, Position position, String doB, Nationality nationality, PlayerStatus status, double height, double weight, String cv, String avatar) {
+        this.name = name;
+        this.position = position;
+        DoB = doB;
+        this.nationality = nationality;
+        this.status = status;
+        this.height = height;
+        this.weight = weight;
+        this.cv = cv;
+        this.avatar = avatar;
+    }
+
     public Player(Long id, String name, Position position, String doB, Nationality nationality, Performance performance, PlayerStatus status, double base_salary, double height, double weight, String cv, String avatar) {
         this.id = id;
         this.name = name;
         this.position = position;
-        DoB = doB;
+        this.DoB = doB;
         this.nationality = nationality;
         this.performance = performance;
         this.status = status;
