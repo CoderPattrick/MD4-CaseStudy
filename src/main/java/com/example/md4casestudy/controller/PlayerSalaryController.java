@@ -28,14 +28,14 @@ public class PlayerSalaryController implements GeneralController<PlayerSalary> {
 
     @Override
     @PostMapping
-    public ResponseEntity save(@ModelAttribute PlayerSalary playerSalary) {
+    public ResponseEntity save(@RequestBody PlayerSalary playerSalary) {
         playerSalaryService.save(playerSalary);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
     @PostMapping("/{id}")
-    public ResponseEntity save(@PathVariable Long id,@ModelAttribute PlayerSalary playerSalary) {
+    public ResponseEntity save(@PathVariable Long id,@RequestBody PlayerSalary playerSalary) {
         playerSalary.setId(id);
         playerSalaryService.save(playerSalary);
         return new ResponseEntity<>(HttpStatus.OK);
