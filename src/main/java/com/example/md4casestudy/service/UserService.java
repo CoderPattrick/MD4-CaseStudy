@@ -6,5 +6,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import java.util.Optional;
 
 public interface UserService extends GeneralService<AppUser>, UserDetailsService {
-    Optional<AppUser> findByUsername(String username);
+    AppUser findByUsername(String username);
 }

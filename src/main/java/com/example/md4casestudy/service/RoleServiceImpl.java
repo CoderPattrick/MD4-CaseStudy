@@ -3,9 +3,11 @@ package com.example.md4casestudy.service;
 import com.example.md4casestudy.model.user.AppRole;
 import com.example.md4casestudy.repo.RoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleRepo roleRepo;

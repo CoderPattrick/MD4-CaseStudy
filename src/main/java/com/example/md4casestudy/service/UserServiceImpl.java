@@ -16,6 +16,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepo userRepo;
 
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
+
     @Override
     public Iterable<AppUser> findAll() {
         return userRepo.findAll();
@@ -46,7 +49,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<AppUser> findByUsername(String username) {
-        return userRepo.findByUsername(username);
+    public AppUser findByUsername(String username) {
+        return userRepo.findByUsername(username).get();
     }
 }
