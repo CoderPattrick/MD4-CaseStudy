@@ -1,6 +1,7 @@
 package com.example.md4casestudy.repo;
 
 import com.example.md4casestudy.model.DTO.WeeklySalaryOfAllCoach;
+import com.example.md4casestudy.model.DTO.WeeklySalaryOfAllPlayer;
 import com.example.md4casestudy.model.salary.Week;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,4 +17,8 @@ public interface WeekRepo extends JpaRepository<Week,Long> {
     //Câu query có tham số nên có @Transaction @Modifying (cường bảo thế)
     @Query(value = "select c.name as coach,n.name as nationality,c.dob as coach_dob,w.first_day_of_the_week as week,cs.weekly_salary as weekly_salary from coach c join nationality n on n.id = c.nationality_id join coach_salary cs on c.id = cs.coach_id join week w on w.id = cs.week_id where w.id = ?1",nativeQuery = true)
     Iterable<WeeklySalaryOfAllCoach> getWeeklySalaryOfAllCoach(Long id);
+
+    @Modifying
+    @Query(value = "select p.name as player,n.name as nationality,p.dob as player_dob, w.first_day_of_the_week as week,ps.weekly_salary as weekly_salary  from player p join nationality n on n.id = p.nationality_id join player_salary ps on p.id = ps.player_id join week w on ps.week_id = w.id where w.id = ?1",nativeQuery = true)
+    Iterable<WeeklySalaryOfAllPlayer> getWeeklySalaryOfAllPlayer(Long id);
 }

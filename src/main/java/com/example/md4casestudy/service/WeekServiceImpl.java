@@ -1,6 +1,7 @@
 package com.example.md4casestudy.service;
 
 import com.example.md4casestudy.model.DTO.WeeklySalaryOfAllCoach;
+import com.example.md4casestudy.model.DTO.WeeklySalaryOfAllPlayer;
 import com.example.md4casestudy.model.salary.Week;
 import com.example.md4casestudy.repo.WeekRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,11 @@ public class WeekServiceImpl implements WeekService {
     @Override
     public void deleteById(Long id) {
         weekRepo.deleteById(id);
+    }
+
+    @Override
+    public Iterable<WeeklySalaryOfAllPlayer> getWeeklySalaryOfAllPlayer(Long id) {
+        return weekRepo.getWeeklySalaryOfAllPlayer(id);
     }
 
     @Override

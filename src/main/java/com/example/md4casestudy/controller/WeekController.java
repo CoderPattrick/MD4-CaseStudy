@@ -1,6 +1,7 @@
 package com.example.md4casestudy.controller;
 
 import com.example.md4casestudy.model.DTO.WeeklySalaryOfAllCoach;
+import com.example.md4casestudy.model.DTO.WeeklySalaryOfAllPlayer;
 import com.example.md4casestudy.model.salary.Week;
 import com.example.md4casestudy.service.WeekService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,11 @@ public class WeekController implements GeneralController<Week> {
     @GetMapping("/{id}/coach_salary")
     public ResponseEntity<Iterable<WeeklySalaryOfAllCoach>> getWSOAC(@PathVariable Long id){
         Iterable<WeeklySalaryOfAllCoach> list = weekService.getWeeklySalaryOfAllCoach(id);
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+    @GetMapping("/{id}/player_salary")
+    public ResponseEntity<Iterable<WeeklySalaryOfAllPlayer>> getWSOAP(@PathVariable Long id){
+        Iterable<WeeklySalaryOfAllPlayer> list = weekService.getWeeklySalaryOfAllPlayer(id);
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 }
