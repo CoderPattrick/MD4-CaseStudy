@@ -1,6 +1,10 @@
 package com.example.md4casestudy.service;
 
 import com.example.md4casestudy.model.user.AppUser;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService extends GeneralService<AppUser>{
+import java.util.Optional;
+
+public interface UserService extends GeneralService<AppUser>, UserDetailsService {
+    Optional<AppUser> findByUsername(String username);
 }

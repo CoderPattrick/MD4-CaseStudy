@@ -1,8 +1,12 @@
 package com.example.md4casestudy.service;
 
 import com.example.md4casestudy.model.user.AppUser;
+import com.example.md4casestudy.model.user.UserPrinciple;
 import com.example.md4casestudy.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,6 +15,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepo userRepo;
+
     @Override
     public Iterable<AppUser> findAll() {
         return userRepo.findAll();
@@ -29,5 +34,19 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteById(Long id) {
         userRepo.deleteById(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<AppUser> userOptional = userRepo.findByUsername(username);
+        if (!userOptional.isPresent()){
+            throw new UsernameNotFoundException(username);
+        }
+        return UserPrinciple.build(userOptional.get());
+    }
+
+    @Override
+    public Optional<AppUser> findByUsername(String username) {
+        return userRepo.findByUsername(username);
     }
 }
