@@ -1,5 +1,6 @@
 package com.example.md4casestudy.service;
 
+import com.example.md4casestudy.model.DTO.SearchPlayer;
 import com.example.md4casestudy.model.Player;
 import com.example.md4casestudy.repo.PlayerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,15 @@ public class PlayerServiceImpl implements PlayerService{
     @Override
     public void deleteById(Long id) {
         playerRepo.deleteById(id);
+    }
+
+    @Override
+    public Iterable<SearchPlayer> findByPosition(Long position_id) {
+        return playerRepo.findByPosition(position_id);
+    }
+
+    @Override
+    public Iterable<SearchPlayer> findByStatus(Long status_id) {
+        return playerRepo.findByStatus(status_id);
     }
 }
