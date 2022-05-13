@@ -50,14 +50,4 @@ public class AuthController {
     public ResponseEntity<String> admin() {
         return new ResponseEntity<>("Admin", HttpStatus.OK);
     }
-
-    @GetMapping("/coach")
-    public ResponseEntity<String> coach() {
-        return new ResponseEntity<>("Coach", HttpStatus.OK);
-    }
-
-    @GetMapping("/player")
-    public ResponseEntity<String> player() {
-        return new ResponseEntity<>("Player", HttpStatus.OK);
-    }
 }

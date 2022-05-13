@@ -16,8 +16,7 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepo userRepo;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+//     private PasswordEncoder passwordEncoder;
 
     @Override
     public Iterable<AppUser> findAll() {

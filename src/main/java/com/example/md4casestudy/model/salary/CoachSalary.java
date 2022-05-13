@@ -1,6 +1,6 @@
 package com.example.md4casestudy.model.salary;
 
-import com.example.md4casestudy.model.Coach;
+import com.example.md4casestudy.model.coach.Coach;
 
 import javax.persistence.*;
 
@@ -13,7 +13,10 @@ public class CoachSalary {
     @ManyToOne
     @JoinColumn(name = "coach_id")
     private Coach coach;
-    private String first_day_of_the_week;
+
+    @ManyToOne
+    @JoinColumn(name = "week_id")
+    private Week week;
     private double weekly_salary;
 
 
@@ -36,12 +39,12 @@ public class CoachSalary {
         this.coach = coach;
     }
 
-    public String getFirst_day_of_the_week() {
-        return first_day_of_the_week;
+    public Week getWeek() {
+        return week;
     }
 
-    public void setFirst_day_of_the_week(String first_day_of_the_week) {
-        this.first_day_of_the_week = first_day_of_the_week;
+    public void setWeek(Week week) {
+        this.week = week;
     }
 
     public double getWeekly_salary() {
@@ -52,16 +55,16 @@ public class CoachSalary {
         this.weekly_salary = weekly_salary;
     }
 
-    public CoachSalary(Coach coach, String first_day_of_the_week, double weekly_salary) {
+    public CoachSalary(Coach coach, Week week, double weekly_salary) {
         this.coach = coach;
-        this.first_day_of_the_week = first_day_of_the_week;
+        this.week = week;
         this.weekly_salary = weekly_salary;
     }
 
-    public CoachSalary(Long id, Coach coach, String first_day_of_the_week, double weekly_salary) {
+    public CoachSalary(Long id, Coach coach, Week week, double weekly_salary) {
         this.id = id;
         this.coach = coach;
-        this.first_day_of_the_week = first_day_of_the_week;
+        this.week = week;
         this.weekly_salary = weekly_salary;
     }
 }
