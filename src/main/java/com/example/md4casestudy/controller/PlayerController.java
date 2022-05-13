@@ -10,14 +10,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 @Controller
 @CrossOrigin("*")
 @RequestMapping("/player")
-public class PlayerController implements GeneralController<Player> {
+public class PlayerController {
     @Autowired
     private PlayerService playerService;
 
@@ -25,19 +27,19 @@ public class PlayerController implements GeneralController<Player> {
     String uploadPath;
 
 
-    @Override
+
     @GetMapping
     public ResponseEntity<Iterable<Player>> findAll() {
         return new ResponseEntity<>(playerService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @Override
+
     public ResponseEntity<Player> findById(@PathVariable Long id) {
         return new ResponseEntity<>(playerService.findById(id).get(), HttpStatus.OK);
     }
 
-    @Override
+
     public ResponseEntity save(Player player) {
         return null;
     }
@@ -59,23 +61,54 @@ public class PlayerController implements GeneralController<Player> {
         }
 
         Player player = new Player(playerForm.getName(), playerForm.getPosition(), playerForm.getDoB(),
-                playerForm.getNationality(), playerForm.getPerformance(), playerForm.getStatus(), playerForm.getBase_salary(), playerForm.getHeight(), playerForm.getWeight(), fileNameCV, fileNameAvatar);
+                playerForm.getNationality(), playerForm.getPerformance(), playerForm.getStatus(), playerForm.getBase_salary(),
+                playerForm.getHeight(), playerForm.getWeight(), fileNameCV, fileNameAvatar);
                 playerService.save(player);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
-    @PostMapping("/{id}")
-    @Override
-    public ResponseEntity save(@PathVariable Long id,@ModelAttribute Player player) {
-        player.setId(id);
-        playerService.save(player);
-        return new ResponseEntity<>(HttpStatus.OK);
-        //cần chỉnh sửa để upload file
+//    @PostMapping("/{id}")
+//    @Override
+//    public ResponseEntity save(@PathVariable Long id,@ModelAttribute Player player) {
+//        player.setId(id);
+//        playerService.save(player);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//        //cần chỉnh sửa để upload file
+//    }
+
+@PostMapping("/{id}")
+public ResponseEntity<Player> save(@PathVariable Long id, @ModelAttribute PlayerForm playerForm) {
+    Optional<Player> playerOptional = playerService.findById(id);
+    if (!playerOptional.isPresent()) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    MultipartFile multipartFileAvatar = playerForm.getAvatar();
+    String fileNameAvatar = multipartFileAvatar.getOriginalFilename();
+    try {
+        FileCopyUtils.copy(multipartFileAvatar.getBytes(), new File(uploadPath + fileNameAvatar));
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    MultipartFile multipartFileCV = playerForm.getAvatar();
+    String fileNameCV = multipartFileCV.getOriginalFilename();
+    try {
+        FileCopyUtils.copy(multipartFileCV.getBytes(), new File(uploadPath + multipartFileCV));
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    Player newPlayer = new Player(id, playerForm.getName(), playerForm.getPosition(), playerForm.getDoB(),
+            playerForm.getNationality(), playerForm.getPerformance(), playerForm.getStatus(), playerForm.getBase_salary(),
+            playerForm.getHeight(), playerForm.getWeight(), fileNameCV, fileNameAvatar );
+    if (newPlayer.getAvatar().equals("filename.jpg")) {
+        newPlayer.setAvatar(playerOptional.get().getAvatar());
+    }
+    playerService.save(newPlayer);
+    return new ResponseEntity<>(HttpStatus.OK);
+}
 
     @DeleteMapping("/{id}")
-    @Override
+
     public ResponseEntity deleteById(@PathVariable Long id) {
         playerService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);    }
