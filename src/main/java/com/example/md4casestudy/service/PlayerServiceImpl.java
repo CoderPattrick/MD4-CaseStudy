@@ -41,4 +41,14 @@ public class PlayerServiceImpl implements PlayerService{
     public Iterable<SearchPlayer> findByStatus(Long status_id) {
         return playerRepo.findByStatus(status_id);
     }
+
+    @Override
+    public Iterable<SearchPlayer> findByName(String name) {
+        return playerRepo.findByName(name);
+    }
+
+    @Override
+    public Iterable<SearchPlayer> findByBase_salary(Long min, Long max) {
+        return playerRepo.findByBase_salary(min,max);
+    }
 }
