@@ -21,11 +21,13 @@ public class CoachController {
     @Autowired
     private CoachService coachService;
 
+
     @Value("${upload.path}")
     String uploadPath;
 
 
     @GetMapping
+
 
     public ResponseEntity<Iterable<Coach>> findAll() {
         return new ResponseEntity<>(coachService.findAll(), HttpStatus.OK);

@@ -1,5 +1,6 @@
 package com.example.md4casestudy.model.user;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "app_user")
@@ -7,13 +8,21 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String user_name;
+
+    @Column(unique = true, nullable = false)
+    private String username;
+
+    @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private AppRole role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    private Set<AppRole> roles;
 
     public Long getId() {
         return id;
@@ -23,12 +32,12 @@ public class AppUser {
         this.id = id;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUsername(String user_name) {
+        this.username = user_name;
     }
 
     public String getEmail() {
@@ -47,29 +56,29 @@ public class AppUser {
         this.password = password;
     }
 
-    public AppRole getRole() {
-        return role;
+    public Set<AppRole> getRoles() {
+        return roles;
     }
 
-    public void setRole(AppRole role) {
-        this.role = role;
+    public void setRoles(Set<AppRole> roles) {
+        this.roles = roles;
     }
 
     public AppUser() {
     }
 
-    public AppUser(String user_name, String email, String password, AppRole role) {
-        this.user_name = user_name;
+    public AppUser(String user_name, String email, String password, Set<AppRole> roles) {
+        this.username = user_name;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
     }
 
-    public AppUser(Long id, String user_name, String email, String password, AppRole role) {
+    public AppUser(Long id, String user_name, String email, String password, Set<AppRole> roles) {
         this.id = id;
-        this.user_name = user_name;
+        this.username = user_name;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
     }
 }
