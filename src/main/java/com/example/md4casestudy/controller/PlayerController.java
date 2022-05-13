@@ -21,7 +21,7 @@ public class PlayerController implements GeneralController<Player> {
     @Autowired
     private PlayerService playerService;
 
-    @Value("${file-upload}")
+    @Value("${upload.path}")
     String uploadPath;
 
 
