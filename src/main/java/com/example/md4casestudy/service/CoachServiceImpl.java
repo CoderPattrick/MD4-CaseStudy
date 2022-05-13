@@ -1,6 +1,6 @@
 package com.example.md4casestudy.service;
 
-import com.example.md4casestudy.model.Coach;
+import com.example.md4casestudy.model.coach.Coach;
 import com.example.md4casestudy.repo.CoachRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,11 +1,10 @@
 package com.example.md4casestudy.service;
 
 import com.example.md4casestudy.model.DTO.SearchPlayer;
-import com.example.md4casestudy.model.Player;
+import com.example.md4casestudy.model.player.Player;
 import com.example.md4casestudy.repo.PlayerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service

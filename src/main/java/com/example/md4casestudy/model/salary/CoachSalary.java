@@ -1,6 +1,6 @@
 package com.example.md4casestudy.model.salary;
 
-import com.example.md4casestudy.model.Coach;
+import com.example.md4casestudy.model.coach.Coach;
 
 import javax.persistence.*;
 
