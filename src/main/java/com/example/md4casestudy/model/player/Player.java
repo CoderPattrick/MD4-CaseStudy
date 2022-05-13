@@ -1,5 +1,9 @@
-package com.example.md4casestudy.model;
+package com.example.md4casestudy.model.player;
 
+import com.example.md4casestudy.model.Nationality;
+import com.example.md4casestudy.model.Performance;
+import com.example.md4casestudy.model.PlayerStatus;
+import com.example.md4casestudy.model.Position;
 import com.example.md4casestudy.model.user.AppUser;
 
 import javax.persistence.*;

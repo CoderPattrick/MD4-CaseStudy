@@ -1,7 +1,7 @@
 package com.example.md4casestudy.controller;
 
-import com.example.md4casestudy.model.Player;
-import com.example.md4casestudy.model.PlayerForm;
+import com.example.md4casestudy.model.player.Player;
+import com.example.md4casestudy.model.player.PlayerForm;
 import com.example.md4casestudy.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,8 +21,9 @@ public class PlayerController implements GeneralController<Player> {
     @Autowired
     private PlayerService playerService;
 
-    @Value("${upload.path}")
+    @Value("${file-upload}")
     String uploadPath;
+
 
     @Override
     @GetMapping

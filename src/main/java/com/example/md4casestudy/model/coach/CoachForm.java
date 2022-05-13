@@ -1,5 +1,6 @@
-package com.example.md4casestudy.model;
+package com.example.md4casestudy.model.coach;
 
+import com.example.md4casestudy.model.Nationality;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CoachForm {
