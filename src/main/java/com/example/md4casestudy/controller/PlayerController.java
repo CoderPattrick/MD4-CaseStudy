@@ -24,6 +24,7 @@ public class PlayerController {
     @Autowired
     private PlayerService playerService;
 
+
     @Value("${upload.path}")
     String uploadPath;
 
