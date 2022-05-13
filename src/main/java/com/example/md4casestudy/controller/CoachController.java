@@ -15,7 +15,7 @@ public class CoachController implements GeneralController<Coach>{
     @Autowired
     private CoachService coachService;
 
-    @GetMapping
+    @GetMapping("/list")
     @Override
     public ResponseEntity<Iterable<Coach>> findAll() {
         return new ResponseEntity<>(coachService.findAll(), HttpStatus.OK);

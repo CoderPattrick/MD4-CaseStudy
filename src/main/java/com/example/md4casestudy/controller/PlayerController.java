@@ -16,7 +16,7 @@ public class PlayerController implements GeneralController<Player>{
     private PlayerService playerService;
 
     @Override
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<Iterable<Player>> findAll() {
         return new ResponseEntity<>(playerService.findAll(), HttpStatus.OK);
     }

@@ -60,10 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().authenticationEntryPoint(restAuthenticationEntryPoint());
         http.authorizeRequests()
                 .antMatchers("/", "/login").permitAll()
-                .anyRequest().authenticated()
                 .and().authorizeRequests().antMatchers("/admin**").hasAnyRole("ADMIN")
-                .and().authorizeRequests().antMatchers("/coach**").hasAnyRole("COACH")
-                .and().authorizeRequests().antMatchers("/player**").hasAnyRole("PLAYER")
+                .and().authorizeRequests().antMatchers("/coach**").hasAnyRole("COACH","ADMIN")
+                .and().authorizeRequests().antMatchers("/player**").hasAnyRole("PLAYER","COACH","ADMIN")
+                .anyRequest().authenticated()
                 .and().csrf().disable();
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
