@@ -1,6 +1,5 @@
 package com.example.md4casestudy.configuration;
 
-import org.graalvm.compiler.nodes.memory.Access;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
