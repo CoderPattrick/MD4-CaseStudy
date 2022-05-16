@@ -8,4 +8,5 @@ public interface SearchPlayer {
     String getPerformance();
     String getPosition();
     String getStatus();
+    String getBase_salary();
 }

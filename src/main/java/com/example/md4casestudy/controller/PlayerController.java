@@ -25,7 +25,6 @@ public class PlayerController {
     @Autowired
     private PlayerService playerService;
 
-
     @Value("${upload.path}")
     String uploadPath;
 
@@ -126,9 +125,12 @@ public ResponseEntity<Player> save(@PathVariable Long id, @ModelAttribute Player
         Iterable<SearchPlayer> list = playerService.findByStatus(id);
         return new ResponseEntity<>(list,HttpStatus.OK);    }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<Player> findByUserId(@PathVariable Long id) {
-        return new ResponseEntity<>(playerService.findByUserId(id).get(), HttpStatus.OK);
-    }
-
+    @GetMapping("/name")
+    public ResponseEntity<Iterable<SearchPlayer>> findByName(@RequestParam String name){
+        Iterable<SearchPlayer> list = playerService.findByName('%'+name+'%');
+        return new ResponseEntity<>(list,HttpStatus.OK);    }
+    @GetMapping("/salary")
+    public ResponseEntity<Iterable<SearchPlayer>> findBySalary(@RequestParam Long min,@RequestParam Long max){
+        Iterable<SearchPlayer> list = playerService.findByBase_salary(min,max);
+        return new ResponseEntity<>(list,HttpStatus.OK);    }
 }
