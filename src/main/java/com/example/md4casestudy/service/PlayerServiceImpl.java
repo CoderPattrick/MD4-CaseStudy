@@ -41,4 +41,9 @@ public class PlayerServiceImpl implements PlayerService{
     public Iterable<SearchPlayer> findByStatus(Long status_id) {
         return playerRepo.findByStatus(status_id);
     }
+
+    @Override
+    public Optional<Player> findByUserId(Long user_id) {
+        return playerRepo.findByUserId(user_id);
+    }
 }

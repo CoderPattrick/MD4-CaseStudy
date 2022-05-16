@@ -30,4 +30,9 @@ public class CoachServiceImpl implements CoachService{
     public void deleteById(Long id) {
         coachRepo.deleteById(id);
     }
+
+    @Override
+    public Optional<Coach> findByUserId(Long user_id) {
+        return coachRepo.findByUserId(user_id);
+    }
 }

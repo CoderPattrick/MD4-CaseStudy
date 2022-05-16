@@ -1,6 +1,7 @@
 package com.example.md4casestudy.controller;
 
 import com.example.md4casestudy.model.DTO.SearchPlayer;
+import com.example.md4casestudy.model.coach.Coach;
 import com.example.md4casestudy.model.player.Player;
 import com.example.md4casestudy.model.player.PlayerForm;
 import com.example.md4casestudy.service.PlayerService;
@@ -124,5 +125,10 @@ public ResponseEntity<Player> save(@PathVariable Long id, @ModelAttribute Player
     public ResponseEntity<Iterable<SearchPlayer>> findByStatus(@PathVariable Long id){
         Iterable<SearchPlayer> list = playerService.findByStatus(id);
         return new ResponseEntity<>(list,HttpStatus.OK);    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Player> findByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(playerService.findByUserId(id).get(), HttpStatus.OK);
+    }
 
 }

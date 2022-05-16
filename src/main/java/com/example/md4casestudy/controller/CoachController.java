@@ -76,4 +76,9 @@ public class CoachController {
         coachService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Coach> findByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(coachService.findByUserId(id).get(), HttpStatus.OK);
+    }
 }
