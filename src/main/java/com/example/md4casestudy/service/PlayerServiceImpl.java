@@ -54,6 +54,6 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Override
     public Optional<Player> findByUserId(Long user_id) {
-        return Optional.empty();
+        return playerRepo.findByUserId(user_id);
     }
 }
